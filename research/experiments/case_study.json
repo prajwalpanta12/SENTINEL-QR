@@ -1,0 +1,228 @@
+[
+  {
+    "file": "1_safe_wikipedia.png",
+    "decoded": true,
+    "payload": "https://en.wikipedia.org/wiki/QR_code",
+    "decoder": "OpenCV Native (C++)",
+    "qr_type": "URL",
+    "url_valid": true,
+    "cleaned_url": "https://en.wikipedia.org/wiki/QR_code",
+    "ml_prob": 0.0195,
+    "ml_confidence": 96.1,
+    "rule_score": 0,
+    "rules_triggered": [],
+    "intel_status": "Threat intelligence unavailable; no feed could be queried | Not configured: URLhaus, VirusTotal, Google Safe Browsing",
+    "intel_blacklisted": false,
+    "final_score": 1,
+    "verdict": "SAFE",
+    "ml_component": 1.0,
+    "rule_component": 0.0,
+    "intel_component": 0.0,
+    "top_factors": [],
+    "ssl_valid": false
+  },
+  {
+    "file": "2_safe_github.png",
+    "decoded": true,
+    "payload": "https://github.com/features/security",
+    "decoder": "OpenCV Native (C++)",
+    "qr_type": "URL",
+    "url_valid": true,
+    "cleaned_url": "https://github.com/features/security",
+    "ml_prob": 0.0172,
+    "ml_confidence": 96.6,
+    "rule_score": 15,
+    "rules_triggered": [
+      "RULE_SUSPICIOUS_KEYWORD"
+    ],
+    "intel_status": "Threat intelligence unavailable; no feed could be queried | Not configured: URLhaus, VirusTotal, Google Safe Browsing",
+    "intel_blacklisted": false,
+    "final_score": 5,
+    "verdict": "SAFE",
+    "ml_component": 0.9,
+    "rule_component": 4.5,
+    "intel_component": 0.0,
+    "top_factors": [
+      "Phishing & Credential Lure Terms"
+    ],
+    "ssl_valid": true
+  },
+  {
+    "file": "3_suspicious_shortener.png",
+    "decoded": true,
+    "payload": "https://bit.ly/3xSecurityCheckLogin",
+    "decoder": "OpenCV Native (C++)",
+    "qr_type": "URL",
+    "url_valid": true,
+    "cleaned_url": "https://bit.ly/3xSecurityCheckLogin",
+    "ml_prob": 0.0793,
+    "ml_confidence": 84.1,
+    "rule_score": 55,
+    "rules_triggered": [
+      "RULE_URL_SHORTENER",
+      "RULE_SUSPICIOUS_KEYWORD",
+      "RULE_HIGH_ENTROPY"
+    ],
+    "intel_status": "Threat intelligence unavailable; no feed could be queried | Not configured: URLhaus, VirusTotal, Google Safe Browsing",
+    "intel_blacklisted": false,
+    "final_score": 36,
+    "verdict": "SUSPICIOUS",
+    "ml_component": 4.0,
+    "rule_component": 16.5,
+    "intel_component": 0.0,
+    "top_factors": [
+      "Phishing & Credential Lure Terms",
+      "URL Shortener Concealment",
+      "High Character Entropy"
+    ],
+    "ssl_valid": false
+  },
+  {
+    "file": "4_malicious_ip_phish.png",
+    "decoded": true,
+    "payload": "http://192.168.1.254:8080/verify-paypal-account.php?user=victim&token=abc123",
+    "decoder": "OpenCV Native (C++)",
+    "qr_type": "URL",
+    "url_valid": true,
+    "cleaned_url": "http://192.168.1.254:8080/verify-paypal-account.php?user=victim&token=abc123",
+    "ml_prob": 0.9618,
+    "ml_confidence": 92.4,
+    "rule_score": 100,
+    "rules_triggered": [
+      "RULE_IP_HOST",
+      "RULE_BRAND_SPOOFING",
+      "RULE_SUSPICIOUS_KEYWORD",
+      "RULE_NO_HTTPS",
+      "RULE_HIGH_ENTROPY",
+      "RULE_NON_STANDARD_PORT",
+      "RULE_EXCESSIVE_LENGTH"
+    ],
+    "intel_status": "Threat intelligence unavailable; no feed could be queried | Not configured: URLhaus, VirusTotal, Google Safe Browsing",
+    "intel_blacklisted": false,
+    "final_score": 78,
+    "verdict": "MALICIOUS",
+    "ml_component": 48.1,
+    "rule_component": 30.0,
+    "intel_component": 0.0,
+    "top_factors": [
+      "Machine Learning Structural Anomaly",
+      "Raw IP Address Hostname",
+      "Brand Impersonation in Path",
+      "Phishing & Credential Lure Terms",
+      "Cleartext Insecure HTTP"
+    ],
+    "ssl_valid": false
+  },
+  {
+    "file": "5_malicious_paypal_spoof.png",
+    "decoded": true,
+    "payload": "http://www.paypa1-verification-required.xyz/secure/wallet/confirm.php?sid=xX7z&user=admin",
+    "decoder": "OpenCV Native (C++)",
+    "qr_type": "URL",
+    "url_valid": true,
+    "cleaned_url": "http://www.paypa1-verification-required.xyz/secure/wallet/confirm.php?sid=xX7z&user=admin",
+    "ml_prob": 0.9453,
+    "ml_confidence": 89.1,
+    "rule_score": 80,
+    "rules_triggered": [
+      "RULE_SUSPICIOUS_KEYWORD",
+      "RULE_NO_HTTPS",
+      "RULE_HIGH_ENTROPY",
+      "RULE_SUSPICIOUS_TLD",
+      "RULE_EXCESSIVE_LENGTH"
+    ],
+    "intel_status": "Threat intelligence unavailable; no feed could be queried | Not configured: URLhaus, VirusTotal, Google Safe Browsing",
+    "intel_blacklisted": false,
+    "final_score": 71,
+    "verdict": "MALICIOUS",
+    "ml_component": 47.3,
+    "rule_component": 24.0,
+    "intel_component": 0.0,
+    "top_factors": [
+      "Machine Learning Structural Anomaly",
+      "Phishing & Credential Lure Terms",
+      "Cleartext Insecure HTTP",
+      "High Character Entropy",
+      "High-Abuse Disposable TLD"
+    ],
+    "ssl_valid": false
+  },
+  {
+    "file": "6_malicious_dga_domain.png",
+    "decoded": true,
+    "payload": "http://x7k2mq9p4v.com/login?redirect=paypal.com&session=z9x8w7v6u5t4s3r2",
+    "decoder": "OpenCV Native (C++)",
+    "qr_type": "URL",
+    "url_valid": true,
+    "cleaned_url": "http://x7k2mq9p4v.com/login?redirect=paypal.com&session=z9x8w7v6u5t4s3r2",
+    "ml_prob": 0.9451,
+    "ml_confidence": 89.0,
+    "rule_score": 90,
+    "rules_triggered": [
+      "RULE_BRAND_SPOOFING",
+      "RULE_SUSPICIOUS_KEYWORD",
+      "RULE_NO_HTTPS",
+      "RULE_HIGH_ENTROPY",
+      "RULE_DGA_VOWEL_ANOMALY"
+    ],
+    "intel_status": "Threat intelligence unavailable; no feed could be queried | Not configured: URLhaus, VirusTotal, Google Safe Browsing",
+    "intel_blacklisted": false,
+    "final_score": 74,
+    "verdict": "MALICIOUS",
+    "ml_component": 47.3,
+    "rule_component": 27.0,
+    "intel_component": 0.0,
+    "top_factors": [
+      "Machine Learning Structural Anomaly",
+      "Brand Impersonation in Path",
+      "Phishing & Credential Lure Terms",
+      "Cleartext Insecure HTTP",
+      "High Character Entropy"
+    ],
+    "ssl_valid": false
+  },
+  {
+    "file": "7_upi_fraud.png",
+    "decoded": true,
+    "payload": "upi://pay?pa=sbi.refund.portal@ybl&pn=SBI_Reward_Support&am=4999.00&tn=Claim_Your_Cashback_Reward&cu=INR",
+    "decoder": "OpenCV Native (C++)",
+    "qr_type": "UPI",
+    "verdict": "FRAUD RISK",
+    "risk_score": 100,
+    "red_flags": [
+      "Confirmed Malicious Mule VPA",
+      "Reverse-Charge Auto-Debit Trap Detected",
+      "Elevated Personal Payment Amount",
+      "Social Engineering Keywords in VPA"
+    ],
+    "summary": "CRITICAL UPI FRAUD DETECTED: This QR displays signatures of a reverse-charge auto-debit scam or spoofed institution."
+  },
+  {
+    "file": "8_rogue_wifi.png",
+    "decoded": true,
+    "payload": "WIFI:T:nopass;S:Airport_Free_HighSpeed_WiFi;P:;;",
+    "decoder": "OpenCV Native (C++)",
+    "qr_type": "WIFI",
+    "verdict": "CRITICAL RISK",
+    "risk_score": 90,
+    "red_flags": [
+      "Unencrypted Open Wireless Network",
+      "Potential Evil Twin / Rogue AP Honeypot"
+    ],
+    "summary": "CRITICAL WIRELESS HAZARD: Unencrypted open network or Rogue AP signature. Connecting exposes your device to traffic sniffing."
+  },
+  {
+    "file": "9_phishing_email.png",
+    "decoded": true,
+    "payload": "mailto:support@paypa1-security.xyz?subject=Account_Suspended_Action_Required&body=Dear_user_click_the_link_below_to_restore_access",
+    "decoder": "OpenCV Native (C++)",
+    "qr_type": "EMAIL",
+    "verdict": "SUSPICIOUS",
+    "risk_score": 55,
+    "red_flags": [
+      "High-Abuse Disposable Email Domain",
+      "Social Engineering / Phishing Lure in Email"
+    ],
+    "summary": "Email target: support@paypa1-security.xyz"
+  }
+]

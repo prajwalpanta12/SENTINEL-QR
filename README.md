@@ -10,7 +10,13 @@ documented fusion formula.
 > **Status:** research prototype, not a production security product. The reported
 > random-split accuracy is reproducible, but the corpus is synthetic and
 > template-generated. The result is a controlled prototype evaluation, not evidence of
-> field accuracy. See the paper and `paper/evidence_and_claims_audit.md`.
+> field accuracy. See `research/realworld/` for the real-world evaluation.
+
+
+> **Reproducing the paper:** see [`REPRODUCE.md`](REPRODUCE.md). The real-world benchmark is rebuilt from
+> three public repositories pinned to fixed commits (`research/realworld/fetch_sources.sh`); raw URLs are
+> not redistributed. `research/realworld/validate_reproducibility.py` checks hashes, splits, leakage, and
+> every audited manuscript number. The code version evaluated in the paper is tagged `v1.0-evaluated`.
 
 ## Architecture
 
@@ -115,10 +121,18 @@ Removing HTTPS features still gives 98.94%. A domain-disjoint split reaches 100%
 templates cross the split. The HTTPS-only subset has only two malicious test URLs, and
 recall falls to 50% (1 of 2).
 
+### Real-world benchmark (independent of the table above)
+
+On a temporally, domain-, and template-disjoint benchmark (JPCERT/CC phishing URLs reported in
+2025-2026 vs. CrUX and Ebbu2017 benign URLs; 18 923 test URLs) the shipped ensemble reached a
+ROC-AUC of 0.437 and a phishing recall of 3.3%. Scripts, hashes, and results are in
+`research/realworld/` (see its README and `DATA_PROVENANCE.md`). These are the figures to quote.
+
 ## Threat intelligence
 
-URLhaus is queried without authentication. VirusTotal and Google Safe Browsing are
-optional and require user-supplied API keys. The aggregate status distinguishes:
+URLhaus requires a free abuse.ch Auth-Key (sidebar field or the `URLHAUS_AUTH_KEY`
+environment variable); without one it is reported as not configured and no request is
+sent. VirusTotal and Google Safe Browsing are optional and require user-supplied API keys. The aggregate status distinguishes:
 
 - a confirmed or suspicious match;
 - a clean result in an available feed;
@@ -144,7 +158,7 @@ disabled; a safe SSRF-resistant resolver is not implemented.
 ## Quick start
 
 ```powershell
-cd C:\Users\Asus\OneDrive\Documents\qr_threat_analyzer
+cd path\to\SENTINEL-QR
 .\.venv\Scripts\Activate.ps1
 streamlit run app.py
 ```
@@ -154,9 +168,12 @@ The dashboard opens at `http://localhost:8501`.
 ## Tests and reproduction
 
 ```powershell
-# System test suite (48 wiring/behaviour checks)
+# System test suite (52 wiring/behaviour checks)
 $env:PYTHONIOENCODING="utf-8"
 .\.venv\Scripts\python.exe test_system.py
+
+# Regression tests for the post-evaluation fixes (20 checks)
+.\.venv\Scripts\python.exe test_fixes.py
 
 # Dataset audit, splits, ablations, HTTPS-only diagnostic, latency
 .\.venv\Scripts\python.exe research\audit_experiments.py
@@ -165,18 +182,16 @@ $env:PYTHONIOENCODING="utf-8"
 .\.venv\Scripts\python.exe research\case_study.py
 ```
 
-Outputs are written to `research/experiments/` and `paper/evidence/`. The test suite is
+Outputs are written to `research/experiments/` (figures to `research/figures/`, created on demand). The test suite is
 an engineering check, not a measure of detection accuracy.
 
-## Paper artifacts
+## Paper
 
-- `paper/research_paper_final.docx` - final manuscript
-- `paper/research_paper_final.pdf` - final PDF
-- `paper/evidence_and_claims_audit.md` - claim-to-evidence map
-- `paper/references_audit.md` - citation verification
-- `paper/reproducibility_checklist.md` - environment and commands
-- `paper/remaining_work.md` - administrative and scientific follow-up
-- `paper/experiment_summary.json` - machine-readable experiment summary
+The manuscript "Synthetic Benchmarks Overstate QR Phishing Detection: A Leakage Audit and Temporally
+Held-Out Real-World Evaluation of SENTINEL-QR" is under preparation and is not included here. Every
+real-data number in it can be regenerated with the scripts in `research/realworld/` (see its README).
+The exact code version evaluated in the paper is tagged `v1.0-evaluated`; `main` adds the
+post-evaluation interface fixes listed below, which do not change URL scores.
 
 ## Limitations
 
@@ -188,5 +203,37 @@ independent non-URL corpus was used. The UPI blacklist is a ten-entry mock, and 
 Wi-Fi, e-mail, and phone rules are unvalidated heuristics. The explanation layer is a
 rule-derived factor ranking, not SHAP or model attribution.
 
-See `paper/remaining_work.md` for the tasks that still require human action, including
-author details, the institutional template, declarations, and a similarity check.
+
+## Post-evaluation fixes (this copy)
+
+All published results were produced with the previous version. After the evaluation, four
+interface defects were corrected; `features.py`, `rules.py`, `model.py`, `explainability.py`,
+and `threat_intel.py` are byte-identical to the evaluated version, so URL scores are unchanged.
+
+1. SSL card: a certificate-verification failure is now shown as "Cert invalid" instead of "No TLS"
+   (`utils.check_ssl_certificate` returns a `status` field).
+2. PDF report: the Rule ID column now reads the `id` key used by URL rules instead of printing "RULE".
+3. UPI analyzer: plain mobile-number handles (10 digits starting 6-9, optional 91 prefix) no
+   longer trigger HIGH_ENTROPY_VPA.
+4. Benchmark and dashboard views now warn that their metrics come from the synthetic dataset.
+5. Decoder: pyzbar is restricted to QR symbols (1-D product barcodes are no longer analysed as
+   QR payloads); the CLAHE retry creates its own detector; decoder failures are logged.
+6. Unreadable uploaded or webcam images produce an error message instead of a crash.
+7. The sidebar shows URLhaus as inactive when no Auth-Key is configured.
+8. A failed Google Safe Browsing request no longer shows the API key: the error text, which
+   contains the request URL with the key, is replaced by the exception type.
+9. If `models/model_metadata.json` is missing, the dashboard and benchmark views show N/A instead of 0.
+
+`test_fixes.py` covers all nine changes (20 checks). Known design limitations that were
+deliberately not changed, because changing them would alter the evaluated model or scores:
+`count_subdomain_levels` duplicates `count_subdomains`; five features are constant on the
+shipped data; redirect resolution is never called, so `RULE_REDIRECT_CHAIN` cannot fire; the
+context-risk term is always 0; the UPI blacklist is a ten-entry mock.
+
+## Licensing
+
+This repository does not yet contain a LICENSE file; the author must choose one before
+public release. All Python dependencies use permissive licences (MIT, BSD, Apache-2.0,
+MIT-CMU). The optional pyzbar decoder loads the system ZBar library, which is LGPL-2.1
+and is linked dynamically, not distributed here. The real-world data are not redistributed;
+obtain them from the original repositories under their terms (CrUX lists: CC BY 4.0).

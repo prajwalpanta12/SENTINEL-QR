@@ -120,7 +120,9 @@ def query_google_safe_browsing(url: str, api_key: str, timeout: float = 3.0) -> 
         return {
             "source": "Google Safe Browsing v4",
             "is_malicious": False,
-            "status": f"Safe Browsing API check failed: {str(e)}",
+            # Report only the exception type: requests exceptions embed the request URL,
+            # which contains the API key, so str(e) must never be shown or stored.
+            "status": f"Safe Browsing API check failed ({type(e).__name__})",
             "score_penalty": 0
         }
 

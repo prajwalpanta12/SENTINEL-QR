@@ -1,0 +1,92 @@
+Exception reading Public Suffix List url https://publicsuffix.org/list/public_suffix_list.dat
+Traceback (most recent call last):
+  File "/tmp/clean/venv/lib/python3.13/site-packages/tldextract/cache.py", line 196, in run_and_cache
+    result = cast(T, self.get(namespace=namespace, key=key_args))
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/clean/venv/lib/python3.13/site-packages/tldextract/cache.py", line 99, in get
+    raise KeyError("namespace: " + namespace + " key: " + repr(key))
+KeyError: "namespace: publicsuffix.org-tlds key: {'urls': ('https://publicsuffix.org/list/public_suffix_list.dat', 'https://raw.githubusercontent.com/publicsuffix/list/master/public_suffix_list.dat'), 'fallback_to_snapshot': True}"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/clean/venv/lib/python3.13/site-packages/tldextract/cache.py", line 196, in run_and_cache
+    result = cast(T, self.get(namespace=namespace, key=key_args))
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/clean/venv/lib/python3.13/site-packages/tldextract/cache.py", line 99, in get
+    raise KeyError("namespace: " + namespace + " key: " + repr(key))
+KeyError: "namespace: urls key: {'url': 'https://publicsuffix.org/list/public_suffix_list.dat'}"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/clean/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 779, in urlopen
+    self._prepare_proxy(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/tmp/clean/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1074, in _prepare_proxy
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/tmp/clean/venv/lib/python3.13/site-packages/urllib3/connection.py", line 844, in connect
+    self._tunnel()
+    ~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/http/client.py", line 1029, in _tunnel
+    raise OSError(f"Tunnel connection failed: {code} {message.strip()}")
+OSError: Tunnel connection failed: 403 Forbidden
+
+The above exception was the direct cause of the following exception:
+
+urllib3.exceptions.ProxyError: ('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/tmp/clean/venv/lib/python3.13/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/tmp/clean/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/tmp/clean/venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='publicsuffix.org', port=443): Max retries exceeded with url: /list/public_suffix_list.dat (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/clean/venv/lib/python3.13/site-packages/tldextract/suffix_list.py", line 44, in find_first_response
+    return cache.cached_fetch_url(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session=session, url=url, timeout=cache_fetch_timeout
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/clean/venv/lib/python3.13/site-packages/tldextract/cache.py", line 207, in cached_fetch_url
+    return self.run_and_cache(
+           ~~~~~~~~~~~~~~~~~~^
+        func=_fetch_url,
+        ^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        hashed_argnames=["url"],
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/tmp/clean/venv/lib/python3.13/site-packages/tldextract/cache.py", line 198, in run_and_cache
+    result = func(**kwargs)
+  File "/tmp/clean/venv/lib/python3.13/site-packages/tldextract/cache.py", line 216, in _fetch_url
+    response = session.get(url, timeout=timeout)
+  File "/tmp/clean/venv/lib/python3.13/site-packages/requests/sessions.py", line 671, in get
+    return self.request("GET", url, params=params, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/clean/venv/lib/python3.13/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/tmp/clean/venv/lib/python3.13/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/tmp/clean/venv/lib/python3.13/site-packages/requests/adapters.py", line 723, in send
+    raise ProxyError(e, request=request)
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='publicsuffix.org', port=443): Max retries exceeded with url: /list/public_suffix_list.dat (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+done /tmp/clean/out/res/r1_results.json

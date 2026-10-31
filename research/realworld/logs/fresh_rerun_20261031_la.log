@@ -1,0 +1,56 @@
+{
+ "sizes": {
+  "train": {
+   "n": 60000,
+   "phish": 30000,
+   "benign": 30000
+  },
+  "val": {
+   "n": 15739,
+   "phish": 8000,
+   "benign": 7739
+  },
+  "test": {
+   "n": 18923,
+   "phish": 10000,
+   "benign": 8923
+  }
+ },
+ "within_split": {
+  "train": {
+   "exact_duplicate_urls": 0,
+   "label_conflicting_domains": 0
+  },
+  "val": {
+   "exact_duplicate_urls": 0,
+   "label_conflicting_domains": 0
+  },
+  "test": {
+   "exact_duplicate_urls": 0,
+   "label_conflicting_domains": 0
+  }
+ },
+ "cross_split": {
+  "train-val": {
+   "url": 0,
+   "registered_domain": 0,
+   "hostname": 0,
+   "digit_collapsed_template": 0,
+   "host_plus_path_ignoring_query": 0
+  },
+  "train-test": {
+   "url": 0,
+   "registered_domain": 0,
+   "hostname": 0,
+   "digit_collapsed_template": 0,
+   "host_plus_path_ignoring_query": 0
+  },
+  "val-test": {
+   "url": 0,
+   "registered_domain": 0,
+   "hostname": 0,
+   "digit_collapsed_template": 20,
+   "host_plus_path_ignoring_query": 0
+  }
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "r1_results.json": [
+  977,
+  0,
+  []
+ ],
+ "subset_checks.json": [
+  27,
+  0,
+  []
+ ],
+ "crux_rank_check.json": [
+  21,
+  0,
+  []
+ ],
+ "url_type_breakdown.json": [
+  67,
+  0,
+  []
+ ],
+ "rule_trigger_rates.json": [
+  34,
+  0,
+  []
+ ],
+ "leakage_audit.json": [
+  30,
+  0,
+  []
+ ],
+ "cluster_bootstrap.json": [
+  29,
+  0,
+  []
+ ],
+ "scores.npz": "all metrics identical; raw score arrays equal except shipped and r4, which differ by at most 3.3e-16 (threaded floating-point summation)",
+ "note": "Fresh download of the three pinned sources on 2026-10-31, rebuild, and full re-run from this directory. Values are [values compared, differences, examples]; timing fields excluded."
+}

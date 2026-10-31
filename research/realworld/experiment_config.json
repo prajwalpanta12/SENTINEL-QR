@@ -1,0 +1,170 @@
+{
+ "_note": "Extracted from run_experiments.py / build_dataset.py constants and from results/r1_results.json['protocol']; model hashes computed from ../../models (the shipped models used as S1-S3).",
+ "benchmark": {
+  "name": "R1",
+  "build_seed": 20261029,
+  "split_rules": {
+   "phishing": "JPCERT/CC confirmation date: <=2023-12-31 train; 2024 validation; >=2025-01-01 test",
+   "crux": "2023-01 list train; origins new in 2024-01 validation; 2026-09 origins absent from both earlier lists test",
+   "ebbu2017": "70/15/15 by SHA-1 of registered domain",
+   "filters": [
+    "benign rows whose registered domain appears in the phishing list are removed",
+    "no registered domain in two splits",
+    "validation/test URLs sharing a digit-collapsed template with a training URL are removed"
+   ]
+  },
+  "sources": [
+   "phishurl-list e19b194b2d23f6c6ab532cf880c99b306992473e 2026-10-16T04:10:34+00:00",
+   "crux-top-lists 35ba243941defcd21882b134d9dd354824922482 2026-10-13T10:05:18+00:00",
+   "pdd 90b394d8f9fb5d5dc48400e8bf46b001ce42999f 2019-05-30T13:15:49+03:00"
+  ],
+  "split_sizes": {
+   "train": {
+    "n": 60000,
+    "phishing": 30000,
+    "benign": 30000
+   },
+   "val": {
+    "n": 15739,
+    "phishing": 8000,
+    "benign": 7739
+   },
+   "test": {
+    "n": 18923,
+    "phishing": 10000,
+    "benign": 8923
+   }
+  }
+ },
+ "experiment": {
+  "seeds": [
+   42,
+   7,
+   13,
+   101,
+   2026
+  ],
+  "reported_seed": 42,
+  "bootstrap_resamples": 1000,
+  "hyperparameter_grids": {
+   "lr_C": [
+    0.01,
+    0.1,
+    1.0,
+    10.0
+   ],
+   "rf_max_depth": [
+    10,
+    20,
+    null
+   ],
+   "xgb_max_depth": [
+    4,
+    6,
+    8
+   ],
+   "xgb_learning_rate": [
+    0.05,
+    0.1
+   ],
+   "tfidf_lr_C": [
+    0.1,
+    1.0,
+    10.0
+   ]
+  },
+  "tfidf": {
+   "analyzer": "char_wb",
+   "ngram_range": [
+    3,
+    5
+   ],
+   "min_df": 3,
+   "max_features": 200000,
+   "sublinear_tf": true,
+   "lowercase_input": true
+  },
+  "selection": "all hyperparameters and thresholds selected on validation (ROC-AUC for grids, best F1 for thresholds); test scored once",
+  "selected": {
+   "lr_C": 10.0,
+   "rf_max_depth": "20",
+   "xgb_depth_lr": "8_0.1",
+   "tfidf_lr_C": 10.0
+  },
+  "validation_grid_roc_auc": {
+   "lr": {
+    "0.01": 0.8922,
+    "0.1": 0.8922,
+    "1.0": 0.8923,
+    "10.0": 0.8924
+   },
+   "rf": {
+    "10": 0.9038,
+    "20": 0.9133,
+    "None": 0.9107
+   },
+   "xgb": {
+    "4_0.05": 0.912,
+    "4_0.1": 0.9183,
+    "6_0.05": 0.9201,
+    "6_0.1": 0.9244,
+    "8_0.05": 0.9237,
+    "8_0.1": 0.9247
+   }
+  },
+  "features_used_by_retrained_models": [
+   "url_length",
+   "domain_length",
+   "path_length",
+   "count_dots",
+   "count_hyphens",
+   "count_underline",
+   "count_slash",
+   "count_question",
+   "count_equal",
+   "count_at",
+   "count_percent",
+   "count_exclamation",
+   "count_ampersand",
+   "count_digits",
+   "digits_ratio",
+   "special_chars_ratio",
+   "count_subdomains",
+   "has_ip_address",
+   "is_https",
+   "is_shortened",
+   "suspicious_keywords_count",
+   "shannon_entropy",
+   "suspicious_tld",
+   "has_port",
+   "punycode_present",
+   "brand_in_subdomain_or_path",
+   "subdomain_length",
+   "tld_length",
+   "count_params",
+   "query_length",
+   "query_entropy",
+   "vowel_consonant_ratio"
+  ],
+  "shipped_thresholds": {
+   "S1": 0.5,
+   "S3_suspicious": 31,
+   "S3_malicious": 61
+  }
+ },
+ "shipped_models": {
+  "ensemble_qr_model.joblib": "1bcd1d54438d06004ced79ccf85ab15ac74d428df14a43ad2fdbcacaebc89e5b",
+  "lr_qr_model.joblib": "6ed7f0d0af2bbefee75429390afce25476cfd394cf3ac2fa2c1aa5ac7eb9237a",
+  "model_metadata.joblib": "65d611450b5f0494386a231dab980e0c5a21eff2be16e6732b9fc37876120583",
+  "model_metadata.json": "c400cd7a978f262b9357fa8e39e38f6535ffb6eff0450e542bb684435ff2935c",
+  "rf_qr_model.joblib": "a7a63ef151de3e8eaac22a1d1856ddd760354fd7ae13e2afcae5f8ef7f137f55",
+  "xgb_qr_model.joblib": "16a20f2cb21087aad799b25ffe3ed94cee617c9c744cc6333527bb72b08966e4"
+ },
+ "shipped_synthetic_dataset_sha256": "c7519c0a86a4c4bc1e2a0b40d620727148660971ef117959e0507cacea8bbab2",
+ "code_under_test_sha256": {
+  "features.py": "eb1f4ae58ee2f2d8ad96f7eb138a03d50b9911c09ece7bff087f8f1ef182be3c",
+  "rules.py": "73abc362a2bddebfd155f26d590c01622b77c00a3e19877e163f3fc1d2a6d1c1",
+  "explainability.py": "96ff6fd8520af05f946691190cfa09fef2bf754999e19215957fc03cc831eb69",
+  "model.py": "a8b06123cc1a9c13a53696dd01605987459d0e07ae10b7dbb73a3297d7b050c6"
+ }
+}

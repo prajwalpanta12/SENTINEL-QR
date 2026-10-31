@@ -1,0 +1,100 @@
+{
+  "train": {
+    "n": 60000,
+    "by_source": {
+      "jpcert": 30000,
+      "crux": 15000,
+      "ebbu2017": 15000
+    },
+    "phishing_date_range": [
+      "2019-01-07",
+      "2023-12-28"
+    ],
+    "unique_domains": 46474,
+    "https_share_by_label": {
+      "0": 0.6679,
+      "1": 0.8123
+    },
+    "file_sha256": "243dffc4bd700a3e14b329b109b01f3370c289430993af7f518ba7256f0d69c1"
+  },
+  "val": {
+    "n": 15739,
+    "by_source": {
+      "jpcert": 8000,
+      "crux": 4000,
+      "ebbu2017": 3739
+    },
+    "phishing_date_range": [
+      "2024-01-04",
+      "2024-12-27"
+    ],
+    "unique_domains": 12596,
+    "https_share_by_label": {
+      "0": 0.6585,
+      "1": 0.7805
+    },
+    "file_sha256": "fe436039c7c8c6f31b58057dea01120c29063b9f16e1879c018b25bfd0de7270"
+  },
+  "test": {
+    "n": 18923,
+    "by_source": {
+      "ebbu2017": 3923,
+      "crux": 5000,
+      "jpcert": 10000
+    },
+    "phishing_date_range": [
+      "2025-01-06",
+      "2026-09-30"
+    ],
+    "unique_domains": 14927,
+    "https_share_by_label": {
+      "0": 0.6756,
+      "1": 0.9722
+    },
+    "file_sha256": "ed9891c503e19b6d9b456d2d866912579eaca1f6b3cc5f203b8e6e9939f54596"
+  }
+}
+[
+ {
+  "jpcert_unique_urls": 279758,
+  "jpcert_rows_skipped": 33
+ },
+ {
+  "crux_candidates": {
+   "train": 775071,
+   "val": 228961,
+   "test": 353553
+  }
+ },
+ {
+  "ebbu_candidates": {
+   "train": 21879,
+   "test": 4231,
+   "val": 3793
+  }
+ },
+ {
+  "benign_dropped_domain_also_phishing": {
+   "crux": 370,
+   "ebbu": 429
+  }
+ },
+ {
+  "drops": {
+   "val": {
+    "phish_domain_seen_earlier": 861,
+    "phish_template_in_train": 35,
+    "crux_template_in_train": 9,
+    "crux_domain_seen_earlier": 1,
+    "ebbu_domain_seen_earlier": 51
+   },
+   "test": {
+    "phish_domain_seen_earlier": 84,
+    "phish_template_in_train": 15,
+    "crux_template_in_train": 6,
+    "ebbu_domain_seen_earlier": 51,
+    "ebbu_template_in_train": 1
+   }
+  }
+ }
+]

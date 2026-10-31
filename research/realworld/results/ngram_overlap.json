@@ -1,0 +1,53 @@
+{
+ "PhishCatcher_Client-Side_Defense_Against_Web_Spoofing_Attacks": {
+  "6gram": [],
+  "8gram": []
+ },
+ "XGBoost-Based_URL_Phishing_Detection_Method_With_Cross-Datase": {
+  "6gram": [],
+  "8gram": []
+ },
+ "Hybrid_Feature-Based_Malicious_URL_Detection_using_Machine_Le": {
+  "6gram": [
+   "max depth 20 min samples split",
+   "trees max depth 20 min samples"
+  ],
+  "8gram": []
+ },
+ "A_Framework_for_Preparing_a_Balanced_and_Comprehensive_Phishi": {
+  "6gram": [],
+  "8gram": []
+ },
+ "Machine_Learning_for_Early_Detection_of_Phishing_URLs_in_Park": {
+  "6gram": [],
+  "8gram": []
+ },
+ "Phishing_URL_Detection_A_Real-Case_Scenario_Through_Login_URL": {
+  "6gram": [
+   "frequency inverse document frequency tf idf",
+   "phishing index login url pilu 90k",
+   "term frequency inverse document frequency tf"
+  ],
+  "8gram": []
+ },
+ "Think_Before_You_ClickMalicious_URL_Detection_in_Cybersecurit": {
+  "6gram": [],
+  "8gram": []
+ },
+ "QsecR_Secure_QR_Code_Scanner_According_to_a_Novel_Malicious_U": {
+  "6gram": [],
+  "8gram": []
+ },
+ "Feature_Engineering_for_Phishing_Website_Detection_Using_Mach": {
+  "6gram": [],
+  "8gram": []
+ },
+ "IEEE-Access-Submission-Checklist-2026.txt": {
+  "6gram": [],
+  "8gram": []
+ },
+ "": {
+  "6gram": [],
+  "8gram": []
+ }
+}

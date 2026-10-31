@@ -1,0 +1,63 @@
+{
+ "n_urls": 18923,
+ "n_domains": 14927,
+ "phish_domains": 8069,
+ "benign_domains": 6858,
+ "max_urls_per_domain": 413,
+ "models": {
+  "shipped": {
+   "roc_auc_cluster_ci": [
+    0.3905,
+    0.4712
+   ],
+   "f1_cluster_ci": [
+    0.0422,
+    0.0598
+   ],
+   "roc_auc_url_ci": [
+    0.4286,
+    0.4459
+   ],
+   "f1_url_ci": [
+    0.0453,
+    0.0561
+   ]
+  },
+  "xgb": {
+   "roc_auc_cluster_ci": [
+    0.9311,
+    0.9447
+   ],
+   "f1_cluster_ci": [
+    0.8625,
+    0.8773
+   ],
+   "roc_auc_url_ci": [
+    0.9341,
+    0.9409
+   ],
+   "f1_url_ci": [
+    0.865,
+    0.8751
+   ]
+  },
+  "tfidf": {
+   "roc_auc_cluster_ci": [
+    0.9619,
+    0.9693
+   ],
+   "f1_cluster_ci": [
+    0.8992,
+    0.9109
+   ],
+   "roc_auc_url_ci": [
+    0.9635,
+    0.9679
+   ],
+   "f1_url_ci": [
+    0.9009,
+    0.9093
+   ]
+  }
+ }
+}

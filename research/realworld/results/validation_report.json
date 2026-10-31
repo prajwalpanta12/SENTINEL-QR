@@ -1,0 +1,82 @@
+[
+ {
+  "check": "Required files exist",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "split_hashes.json agrees with manifest.json",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "Rebuilt split files match released split hashes",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "Sample counts: hash records = manifest = split_hashes.json",
+  "status": "PASS",
+  "detail": "train=60000, val=15739, test=18923"
+ },
+ {
+  "check": "Class distribution matches experiment_config.json",
+  "status": "PASS",
+  "detail": "train: 30000 phishing / 30000 benign, val: 8000 phishing / 7739 benign, test: 10000 phishing / 8923 benign"
+ },
+ {
+  "check": "Per-URL SHA-256 records recompute from rebuilt splits",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "No exact URL shared across splits (from hash records)",
+  "status": "PASS",
+  "detail": "{'train-val': 0, 'train-test': 0, 'val-test': 0}"
+ },
+ {
+  "check": "No exact duplicate URL within a split",
+  "status": "PASS",
+  "detail": "{'train': 0, 'val': 0, 'test': 0}"
+ },
+ {
+  "check": "No registered domain shared across splits (rebuilt splits)",
+  "status": "PASS",
+  "detail": "{'train-val': 0, 'train-test': 0, 'val-test': 0}"
+ },
+ {
+  "check": "Temporal order: no train/val phishing on or after first test date",
+  "status": "PASS",
+  "detail": "count=0"
+ },
+ {
+  "check": "Seeds, grids, bootstrap size, and selections documented",
+  "status": "PASS",
+  "detail": "seeds=[42, 7, 13, 101, 2026], B=1000"
+ },
+ {
+  "check": "Selected hyperparameters match results/r1_results.json",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "Shipped model files match the evaluated versions",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "Evaluated code modules (features, rules, explainability, model) unchanged",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "Manuscript numeric claims match result files (134 claims)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "check": "Every audited claim has a supporting artifact",
+  "status": "PASS",
+  "detail": ""
+ }
+]

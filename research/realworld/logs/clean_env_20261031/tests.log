@@ -1,0 +1,208 @@
+
+[1m==============================================================[0m
+[1m  PHASE 1 — QR Type Detection Engine[0m
+[1m==============================================================[0m
+
+  [96mTest:[0m URL type detection
+  [92m✅ PASS[0m
+
+  [96mTest:[0m UPI type detection
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Wi-Fi type detection
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Email type detection
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Phone type detection
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Text type detection
+  [92m✅ PASS[0m
+
+  [96mTest:[0m UPI payload parsing — field extraction
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Wi-Fi payload parsing — field extraction
+  [92m✅ PASS[0m
+
+[1m==============================================================[0m
+[1m  PHASE 2 — UPI Fraud Detection Engine[0m
+[1m==============================================================[0m
+
+  [96mTest:[0m UPI Fraud — Cashback scam (reverse-charge) → FRAUD RISK
+  [92m✅ PASS[0m
+
+  [96mTest:[0m UPI — No amount QR → low risk
+  [92m✅ PASS[0m
+
+  [96mTest:[0m UPI — High pre-filled amount → flagged
+  [92m✅ PASS[0m
+
+  [96mTest:[0m UPI — Blacklisted pattern → flagged
+  [92m✅ PASS[0m
+
+  [96mTest:[0m UPI — Legitimate merchant QR → SAFE or low SUSPICIOUS
+  [92m✅ PASS[0m
+
+[1m==============================================================[0m
+[1m  PHASE 3 — Wi-Fi Security Analyzer[0m
+[1m==============================================================[0m
+
+  [96mTest:[0m Wi-Fi — Open rogue AP with venue lure → CRITICAL RISK
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Wi-Fi — WEP encryption (deprecated) → flagged
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Wi-Fi — WPA3 with strong password → SAFE
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Wi-Fi — Weak WPA password → flagged
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Wi-Fi — Hidden SSID → suspicious
+  [92m✅ PASS[0m
+
+[1m==============================================================[0m
+[1m  PHASE 4 — Email & Phone Analyzers[0m
+[1m==============================================================[0m
+
+  [96mTest:[0m Email — Phishing lure (paypa1-security.xyz) → SUSPICIOUS/MALICIOUS
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Email — Normal support email → SAFE
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Phone — Premium toll number → flagged
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Phone — Normal mobile → SAFE
+  [92m✅ PASS[0m
+
+[1m==============================================================[0m
+[1m  PHASE 5 — 36-Feature URL Feature Extraction[0m
+[1m==============================================================[0m
+
+  [96mTest:[0m Feature count == 36
+  [92m✅ PASS[0m
+
+  [96mTest:[0m FEATURE_COLUMNS length == 36
+  [92m✅ PASS[0m
+
+  [96mTest:[0m IP address detection feature
+  [92m✅ PASS[0m
+
+  [96mTest:[0m HTTPS detection feature
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Entropy calculation for DGA domain
+  [92m✅ PASS[0m
+
+  [96mTest:[0m get_feature_vector() returns vector of length 36
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Sensitive extension (.exe) detection
+  [92m✅ PASS[0m
+
+[1m==============================================================[0m
+[1m  PHASE 6 — Heuristic Rule Engine (16 Rules)[0m
+[1m==============================================================[0m
+
+  [96mTest:[0m Rules — IP-based URL triggers ≥1 rule
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Rules — Clean Wikipedia URL triggers 0 rules
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Rules — Phishing keywords trigger rules
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Rules — Triggered rule objects have correct schema
+  [92m✅ PASS[0m
+
+[1m==============================================================[0m
+[1m  PHASE 7 — ML Model Prediction (Ensemble)[0m
+[1m==============================================================[0m
+
+  [96mTest:[0m ML — Safe URL → low malicious_prob
+  [92m✅ PASS[0m
+
+  [96mTest:[0m ML — IP phishing URL → elevated malicious_prob
+  [92m✅ PASS[0m
+
+  [96mTest:[0m ML — Result dict has required schema keys
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Metadata — model_metadata.joblib loads correctly
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Metadata — sample count matches the shipped corpus
+  [92m✅ PASS[0m
+
+[1m==============================================================[0m
+[1m  PHASE 8 — Hybrid Risk Score + Explainability[0m
+[1m==============================================================[0m
+
+  [96mTest:[0m Hybrid — Low threat → SAFE score < 30
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Hybrid — High threat → MALICIOUS score ≥ 60
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Explanation — Returns top_5_factors, guidance, why_flagged
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Hybrid — Rule floor is monotone in the raw score
+  [92m✅ PASS[0m
+
+[1m==============================================================[0m
+[1m  PHASE 9 — PDF Audit Report Generation[0m
+[1m==============================================================[0m
+
+  [96mTest:[0m PDF — URL Malicious report generates valid PDF bytes
+  [92m✅ PASS[0m
+
+  [96mTest:[0m PDF — UPI Fraud report generates valid PDF bytes
+  [92m✅ PASS[0m
+
+  [96mTest:[0m PDF — Untrusted payload markup is escaped
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Threat intel — Offline, clean, and unconfigured are distinct
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Threat intel — URLhaus without Auth-Key makes no request, reports not configured
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Threat intel — URLhaus sends the Auth-Key header
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Threat intel — Rejected URLhaus key is reported unavailable
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Threat intel — UI card never shows a clean result without a successful query
+  [92m✅ PASS[0m
+
+[1m==============================================================[0m
+[1m  PHASE 10 — QR Decode Engine[0m
+[1m==============================================================[0m
+
+  [96mTest:[0m Decode — Wikipedia QR from demo samples
+  [92m✅ PASS[0m
+
+  [96mTest:[0m Decode — UPI Fraud QR from demo samples
+  [92m✅ PASS[0m
+
+[1m==============================================================[0m
+[1m  TEST SUITE COMPLETE — SENTINEL-QR v2.5[0m
+[1m==============================================================[0m
+
+  [92m✅ Passed  : 52[0m
+  [91m❌ Failed  : 0[0m
+  [93m⚠️  Warnings: 0[0m
+
+  Total Tests: 52
+
+  [92m[1mALL TESTS PASSED — wiring and behaviour checks complete.[0m

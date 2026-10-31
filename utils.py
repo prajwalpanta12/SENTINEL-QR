@@ -16,6 +16,9 @@ import urllib.parse
 import socket
 import ssl
 from datetime import datetime
+import logging
+
+logger = logging.getLogger(__name__)
 from xml.sax.saxutils import escape as xml_escape
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image as RLImage
@@ -24,6 +27,7 @@ from reportlab.lib import colors
 
 try:
     from pyzbar.pyzbar import decode as pyzbar_decode
+    from pyzbar.pyzbar import ZBarSymbol
     PYZBAR_AVAILABLE = True
 except Exception:
     PYZBAR_AVAILABLE = False
@@ -62,13 +66,14 @@ def decode_qr_code(image_bytes_or_pil):
                     pt1 = tuple(pts[i])
                     pt2 = tuple(pts[(i + 1) % len(pts)])
                     cv2.line(annotated_cv, pt1, pt2, (0, 255, 0), 3)
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("OpenCV QR decoding failed: %s", exc)
 
     # 2. Secondary Engine: pyzbar
     if not decoded_text and PYZBAR_AVAILABLE:
         try:
-            barcodes = pyzbar_decode(pil_img)
+            # Restrict to QR symbols so 1-D product barcodes are not analysed as QR payloads.
+            barcodes = pyzbar_decode(pil_img, symbols=[ZBarSymbol.QRCODE])
             for barcode in barcodes:
                 if barcode.data:
                     decoded_text = barcode.data.decode("utf-8", errors="ignore").strip()
@@ -82,8 +87,8 @@ def decode_qr_code(image_bytes_or_pil):
                         3
                     )
                     break
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("pyzbar QR decoding failed: %s", exc)
 
     # 3. Fallback: Contrast CLAHE enhancement
     if not decoded_text:
@@ -91,7 +96,7 @@ def decode_qr_code(image_bytes_or_pil):
             gray = cv2.cvtColor(cv_img, cv2.COLOR_BGR2GRAY)
             clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
             enhanced = clahe.apply(gray)
-            val, points, _ = detector.detectAndDecode(enhanced)
+            val, points, _ = cv2.QRCodeDetector().detectAndDecode(enhanced)
             if val and len(val.strip()) > 0:
                 decoded_text = val.strip()
                 engine_used = "OpenCV (CLAHE Enhanced)"
@@ -101,8 +106,8 @@ def decode_qr_code(image_bytes_or_pil):
                         pt1 = tuple(pts[i])
                         pt2 = tuple(pts[(i + 1) % len(pts)])
                         cv2.line(annotated_cv, pt1, pt2, (0, 255, 0), 3)
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("CLAHE-enhanced QR decoding failed: %s", exc)
 
     annotated_rgb = cv2.cvtColor(annotated_cv, cv2.COLOR_BGR2RGB)
     annotated_pil = Image.fromarray(annotated_rgb)
@@ -194,14 +199,15 @@ def check_ssl_certificate(domain: str, port: int = 443, timeout: float = 2.5):
                 not_after = cert.get('notAfter', 'Unknown')
                 return {
                     'ssl_valid': True,
+                    'status': 'valid',
                     'issuer': issuer_name,
                     'expiry': not_after,
                     'error': None
                 }
     except ssl.SSLCertVerificationError as e:
-        return {'ssl_valid': False, 'issuer': 'Invalid / Self-Signed', 'expiry': 'N/A', 'error': f"Verification failed: {e.reason}"}
+        return {'ssl_valid': False, 'status': 'cert_invalid', 'issuer': 'Invalid / Self-Signed', 'expiry': 'N/A', 'error': f"Verification failed: {e.reason}"}
     except Exception as e:
-        return {'ssl_valid': False, 'issuer': 'Connection Failed / Unreachable', 'expiry': 'N/A', 'error': str(e)}
+        return {'ssl_valid': False, 'status': 'unreachable', 'issuer': 'Connection Failed / Unreachable', 'expiry': 'N/A', 'error': str(e)}
 
 
 def generate_security_pdf_report(payload: str, qr_type: str, risk_score: int, verdict: str,
@@ -338,7 +344,7 @@ def generate_security_pdf_report(payload: str, qr_type: str, risk_score: int, ve
         rules_data = [["Rule ID", "Severity", "Points", "Forensic Technical Evidence"]]
         for r in triggered_rules:
             rules_data.append([
-                r.get('rule', r.get('rule_id', 'RULE')),
+                r.get('rule', r.get('rule_id', r.get('id', 'RULE'))),
                 r.get('severity', 'MED'),
                 f"+{r.get('points', 0)}",
                 Paragraph(xml_escape(str(r.get('description', r.get('reason', '')))), body_style)

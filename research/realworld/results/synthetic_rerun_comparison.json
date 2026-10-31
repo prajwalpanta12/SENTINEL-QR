@@ -1,0 +1,5 @@
+{
+ "note": "research/audit_experiments.py re-run on Linux on 2026-10-31 and compared with the shipped research/experiments/dataset_audit.json (timing fields excluded)",
+ "values_compared": 277,
+ "differences": 0
+}

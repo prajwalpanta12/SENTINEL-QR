@@ -1,0 +1,72 @@
+{
+ "n": {
+  "phish": 10000,
+  "benign": 8923
+ },
+ "rates": {
+  "RULE_AT_SYMBOL": {
+   "phish_rate": 0.0023,
+   "benign_rate": 0.0002
+  },
+  "RULE_BRAND_SPOOFING": {
+   "phish_rate": 0.0044,
+   "benign_rate": 0.0057
+  },
+  "RULE_DANGEROUS_DOWNLOAD": {
+   "phish_rate": 0.0002,
+   "benign_rate": 0.0
+  },
+  "RULE_DGA_VOWEL_ANOMALY": {
+   "phish_rate": 0.2978,
+   "benign_rate": 0.0259
+  },
+  "RULE_EXCESSIVE_LENGTH": {
+   "phish_rate": 0.0952,
+   "benign_rate": 0.09
+  },
+  "RULE_EXCESSIVE_SUBDOMAINS": {
+   "phish_rate": 0.0239,
+   "benign_rate": 0.0006
+  },
+  "RULE_HIGH_ENTROPY": {
+   "phish_rate": 0.4863,
+   "benign_rate": 0.2937
+  },
+  "RULE_IP_HOST": {
+   "phish_rate": 0.0006,
+   "benign_rate": 0.0
+  },
+  "RULE_NON_STANDARD_PORT": {
+   "phish_rate": 0.0,
+   "benign_rate": 0.0004
+  },
+  "RULE_NO_HTTPS": {
+   "phish_rate": 0.0278,
+   "benign_rate": 0.3244
+  },
+  "RULE_PARAMETER_SMUGGLING": {
+   "phish_rate": 0.019,
+   "benign_rate": 0.0004
+  },
+  "RULE_PUNYCODE": {
+   "phish_rate": 0.0006,
+   "benign_rate": 0.0018
+  },
+  "RULE_REDIRECT_CHAIN": {
+   "phish_rate": 0.0,
+   "benign_rate": 0.0
+  },
+  "RULE_SUSPICIOUS_KEYWORD": {
+   "phish_rate": 0.2062,
+   "benign_rate": 0.0424
+  },
+  "RULE_SUSPICIOUS_TLD": {
+   "phish_rate": 0.0846,
+   "benign_rate": 0.0214
+  },
+  "RULE_URL_SHORTENER": {
+   "phish_rate": 0.0,
+   "benign_rate": 0.0
+  }
+ }
+}

@@ -1,0 +1,296 @@
+[
+ {
+  "claim": "S1 ROC-AUC",
+  "text": "0.437",
+  "result": "0.437",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "S3 ROC-AUC",
+  "text": "0.531",
+  "result": "0.531",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "S2 ROC-AUC",
+  "text": "0.629",
+  "result": "0.629",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "R3 ROC-AUC",
+  "text": "0.938",
+  "result": "0.938",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "L1 ROC-AUC",
+  "text": "0.966",
+  "result": "0.966",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "R4 ROC-AUC",
+  "text": "0.928",
+  "result": "0.928",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "R2 ROC-AUC",
+  "text": "0.922",
+  "result": "0.922",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "R1 ROC-AUC",
+  "text": "0.794",
+  "result": "0.794",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "A1 ROC-AUC",
+  "text": "0.918",
+  "result": "0.918",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "S1 recall 3.3%",
+  "text": "3.3%",
+  "result": "3.3",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "S3 recall 6.25%",
+  "text": "6.25%",
+  "result": "6.25",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "S1 FP count",
+  "text": "2 882",
+  "result": "2882",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "S1 TP 333",
+  "text": "333",
+  "result": "333",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "L1 F1 0.905",
+  "text": "0.905",
+  "result": "0.905",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "R3 F1 0.870",
+  "text": "0.870",
+  "result": "0.870",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "L1 FPR 0.127",
+  "text": "0.127",
+  "result": "0.127",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "L1 recall 0.920",
+  "text": "0.920",
+  "result": "0.920",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "R3 CI 0.934-0.941",
+  "text": "0.934-0.941",
+  "result": "0.934-0.941",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "L1 CI 0.964-0.968",
+  "text": "0.964-0.968",
+  "result": "0.964-0.968",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "S1 CI 0.429-0.446",
+  "text": "0.429-0.446",
+  "result": "0.429-0.446",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "src identifiability 0.996",
+  "text": "0.996",
+  "result": "0.996",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "homepage XGB 0.892",
+  "text": "0.892",
+  "result": "0.892",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "homepage TFIDF 0.924",
+  "text": "0.924",
+  "result": "0.924",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "path TFIDF 0.995",
+  "text": "0.995",
+  "result": "0.995",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "https-only XGB 0.916",
+  "text": "0.916",
+  "result": "0.916",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "CrUX FPR XGB 0.248",
+  "text": "0.248",
+  "result": "0.248",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "CrUX FPR TFIDF 0.211",
+  "text": "0.211",
+  "result": "0.211",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "HTTPS recall shipped 0.6%",
+  "text": "0.6%",
+  "result": "0.6",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "Ebbu FPR shipped 72.5%",
+  "text": "72.5%",
+  "result": "72.5",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "prec@1% FPR1 TFIDF 0.341",
+  "text": "0.341",
+  "result": "0.341",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "prec@1% FPR1 XGB 0.234",
+  "text": "0.234",
+  "result": "0.234",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "Brier 0.105",
+  "text": "0.105",
+  "result": "0.105",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "ECE 0.035",
+  "text": "0.035",
+  "result": "0.035",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "seed SD XGB AUC 0.0007",
+  "text": "0.0007",
+  "result": "0.0007",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "rule HTTPS benign 32.4",
+  "text": "32.4",
+  "result": "32.4",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "rule HTTPS phish 2.8",
+  "text": "2.8",
+  "result": "2.8",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "bare host n 1864",
+  "text": "1864",
+  "result": "1864",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "JPCERT unique 279 758",
+  "text": "279 758",
+  "result": "279758",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "HTTPS phish test 0.972",
+  "text": "0.972",
+  "result": "0.972",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "synthetic acc 99.47",
+  "text": "99.47%",
+  "result": "99.47",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "HTTP rule 99.15",
+  "text": "99.15%",
+  "result": "99.15",
+  "in_text": true,
+  "match": true
+ },
+ {
+  "claim": "runtime features 0.070",
+  "text": "0.070 ms",
+  "result": "0.070 ms",
+  "in_text": true,
+  "match": true
+ }
+]

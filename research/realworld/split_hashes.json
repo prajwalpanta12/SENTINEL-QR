@@ -1,0 +1,18 @@
+{
+ "_note": "SHA-256 of the split CSV files written by build_dataset.py (copied from data_manifest/manifest.json). The CSV files themselves contain raw URLs and are not released.",
+ "train": {
+  "file": "train.csv",
+  "sha256": "243dffc4bd700a3e14b329b109b01f3370c289430993af7f518ba7256f0d69c1",
+  "rows": 60000
+ },
+ "val": {
+  "file": "val.csv",
+  "sha256": "fe436039c7c8c6f31b58057dea01120c29063b9f16e1879c018b25bfd0de7270",
+  "rows": 15739
+ },
+ "test": {
+  "file": "test.csv",
+  "sha256": "ed9891c503e19b6d9b456d2d866912579eaca1f6b3cc5f203b8e6e9939f54596",
+  "rows": 18923
+ }
+}

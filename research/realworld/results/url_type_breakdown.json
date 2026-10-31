@@ -1,0 +1,89 @@
+{
+ "thresholds": {
+  "shipped": 0.5,
+  "xgb": 0.4,
+  "tfidf": 0.309
+ },
+ "by_type": {
+  "HTTP scheme": {
+   "n_phish": 278,
+   "recall_shipped": 1.0,
+   "recall_xgb": 0.7626,
+   "recall_tfidf": 0.8345,
+   "n_benign": 2895,
+   "fpr_shipped": 0.9917,
+   "fpr_xgb": 0.0307,
+   "fpr_tfidf": 0.0193
+  },
+  "Raw IP host": {
+   "n_phish": 6,
+   "recall_shipped": 0.5,
+   "recall_xgb": 1.0,
+   "recall_tfidf": 1.0,
+   "n_benign": 0,
+   "fpr_shipped": null,
+   "fpr_xgb": null,
+   "fpr_tfidf": null
+  },
+  "URL shortener": {
+   "n_phish": 0,
+   "recall_shipped": null,
+   "recall_xgb": null,
+   "recall_tfidf": null,
+   "n_benign": 0,
+   "fpr_shipped": null,
+   "fpr_xgb": null,
+   "fpr_tfidf": null
+  },
+  "Root path only": {
+   "n_phish": 1864,
+   "recall_shipped": 0.0665,
+   "recall_xgb": 0.7505,
+   "recall_tfidf": 0.816,
+   "n_benign": 5205,
+   "fpr_shipped": 0.0369,
+   "fpr_xgb": 0.2432,
+   "fpr_tfidf": 0.204
+  },
+  "Has query string": {
+   "n_phish": 1479,
+   "recall_shipped": 0.0345,
+   "recall_xgb": 0.9797,
+   "recall_tfidf": 0.9844,
+   "n_benign": 139,
+   "fpr_shipped": 0.7266,
+   "fpr_xgb": 0.1367,
+   "fpr_tfidf": 0.0576
+  },
+  "Length > 75 chars": {
+   "n_phish": 952,
+   "recall_shipped": 0.0095,
+   "recall_xgb": 0.917,
+   "recall_tfidf": 0.9758,
+   "n_benign": 803,
+   "fpr_shipped": 0.6775,
+   "fpr_xgb": 0.0174,
+   "fpr_tfidf": 0.005
+  },
+  "Punycode (xn--)": {
+   "n_phish": 6,
+   "recall_shipped": 0.6667,
+   "recall_xgb": 0.8333,
+   "recall_tfidf": 0.5,
+   "n_benign": 16,
+   "fpr_shipped": 0.4375,
+   "fpr_xgb": 0.125,
+   "fpr_tfidf": 0.0
+  },
+  "Non-standard port": {
+   "n_phish": 0,
+   "recall_shipped": null,
+   "recall_xgb": null,
+   "recall_tfidf": null,
+   "n_benign": 4,
+   "fpr_shipped": 0.0,
+   "fpr_xgb": 0.0,
+   "fpr_tfidf": 0.25
+  }
+ }
+}

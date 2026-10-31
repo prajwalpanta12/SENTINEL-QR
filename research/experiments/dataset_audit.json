@@ -1,0 +1,494 @@
+{
+  "rows": 943,
+  "columns": [
+    "url_length",
+    "domain_length",
+    "path_length",
+    "count_dots",
+    "count_hyphens",
+    "count_underline",
+    "count_slash",
+    "count_question",
+    "count_equal",
+    "count_at",
+    "count_percent",
+    "count_exclamation",
+    "count_ampersand",
+    "count_digits",
+    "digits_ratio",
+    "special_chars_ratio",
+    "count_subdomains",
+    "has_ip_address",
+    "is_https",
+    "is_shortened",
+    "suspicious_keywords_count",
+    "shannon_entropy",
+    "suspicious_tld",
+    "has_port",
+    "punycode_present",
+    "brand_in_subdomain_or_path",
+    "redirect_count",
+    "has_redirect",
+    "subdomain_length",
+    "tld_length",
+    "count_params",
+    "query_length",
+    "query_entropy",
+    "has_sensitive_extension",
+    "vowel_consonant_ratio",
+    "count_subdomain_levels",
+    "label",
+    "url"
+  ],
+  "label_counts": {
+    "0": 583,
+    "1": 360
+  },
+  "exact_duplicate_urls": 0,
+  "unique_urls": 943,
+  "unique_registered_domains": 479,
+  "scheme_by_label": {
+    "http": {
+      "0": 0,
+      "1": 352
+    },
+    "https": {
+      "0": 583,
+      "1": 8
+    }
+  },
+  "tld_top15": {
+    "com": 395,
+    "xyz": 156,
+    "org": 112,
+    "ml": 107,
+    "": 60,
+    "edu": 50,
+    "ly": 14,
+    "gov.in": 8,
+    "net": 7,
+    "ga": 6,
+    "tk": 5,
+    "co.in": 3,
+    "co": 2,
+    "io": 2,
+    "gov": 2
+  },
+  "tld_by_label": {
+    "": {
+      "0": 0,
+      "1": 60
+    },
+    "ac.in": {
+      "0": 1,
+      "1": 0
+    },
+    "app": {
+      "0": 1,
+      "1": 0
+    },
+    "at": {
+      "0": 2,
+      "1": 0
+    },
+    "cc": {
+      "0": 1,
+      "1": 0
+    },
+    "ch": {
+      "0": 1,
+      "1": 0
+    },
+    "co": {
+      "0": 2,
+      "1": 0
+    },
+    "co.in": {
+      "0": 3,
+      "1": 0
+    },
+    "com": {
+      "0": 379,
+      "1": 16
+    },
+    "edu": {
+      "0": 50,
+      "1": 0
+    },
+    "ga": {
+      "0": 0,
+      "1": 6
+    },
+    "gov": {
+      "0": 2,
+      "1": 0
+    },
+    "gov.in": {
+      "0": 8,
+      "1": 0
+    },
+    "gy": {
+      "0": 1,
+      "1": 0
+    },
+    "id": {
+      "0": 0,
+      "1": 1
+    },
+    "in": {
+      "0": 1,
+      "1": 0
+    },
+    "info": {
+      "0": 0,
+      "1": 1
+    },
+    "io": {
+      "0": 2,
+      "1": 0
+    },
+    "ly": {
+      "0": 13,
+      "1": 1
+    },
+    "ml": {
+      "0": 0,
+      "1": 107
+    },
+    "net": {
+      "0": 1,
+      "1": 6
+    },
+    "org": {
+      "0": 112,
+      "1": 0
+    },
+    "org.in": {
+      "0": 2,
+      "1": 0
+    },
+    "sbi": {
+      "0": 1,
+      "1": 0
+    },
+    "site": {
+      "0": 0,
+      "1": 1
+    },
+    "tk": {
+      "0": 0,
+      "1": 5
+    },
+    "xyz": {
+      "0": 0,
+      "1": 156
+    }
+  },
+  "unique_templates": 194,
+  "synthetic_sample_urls": [
+    "https://www.example24.com/docs/security/guide",
+    "https://docs.microsoft.com/en-us/security/benchmark/azure/v43",
+    "http://malicious-site-18.ml/login?token=RAND000012",
+    "https://www.cloudflare.com/learning/ssl/what-is-ssl/",
+    "https://retail.icicibank.com/corp/AuthenticationController",
+    "https://www.wolframalpha.com/input?i=prime+107"
+  ],
+  "constant_features": [
+    "count_percent",
+    "count_exclamation",
+    "punycode_present",
+    "redirect_count",
+    "has_redirect"
+  ],
+  "duplicate_feature_pairs": [
+    [
+      "count_equal",
+      "count_params"
+    ],
+    [
+      "count_percent",
+      "count_exclamation"
+    ],
+    [
+      "count_percent",
+      "punycode_present"
+    ],
+    [
+      "count_percent",
+      "redirect_count"
+    ],
+    [
+      "count_percent",
+      "has_redirect"
+    ],
+    [
+      "count_exclamation",
+      "punycode_present"
+    ],
+    [
+      "count_exclamation",
+      "redirect_count"
+    ],
+    [
+      "count_exclamation",
+      "has_redirect"
+    ],
+    [
+      "count_subdomains",
+      "count_subdomain_levels"
+    ],
+    [
+      "punycode_present",
+      "redirect_count"
+    ],
+    [
+      "punycode_present",
+      "has_redirect"
+    ],
+    [
+      "redirect_count",
+      "has_redirect"
+    ]
+  ],
+  "https_crosstab": {
+    "0": {
+      "0": 0,
+      "1": 352
+    },
+    "1": {
+      "0": 583,
+      "1": 8
+    }
+  },
+  "single_feature_is_https_accuracy": 0.9915,
+  "reproduction_random_split": {
+    "train": 754,
+    "test": 189,
+    "test_safe": 117,
+    "test_malicious": 72,
+    "xgboost": {
+      "accuracy": 0.9947,
+      "precision": 1.0,
+      "recall": 0.9861,
+      "f1": 0.993,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          117,
+          0
+        ],
+        [
+          1,
+          71
+        ]
+      ]
+    },
+    "random_forest": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          117,
+          0
+        ],
+        [
+          0,
+          72
+        ]
+      ]
+    },
+    "logistic_regression": {
+      "accuracy": 0.9947,
+      "precision": 1.0,
+      "recall": 0.9861,
+      "f1": 0.993,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          117,
+          0
+        ],
+        [
+          1,
+          71
+        ]
+      ]
+    },
+    "ensemble": {
+      "accuracy": 0.9947,
+      "precision": 1.0,
+      "recall": 0.9861,
+      "f1": 0.993,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          117,
+          0
+        ],
+        [
+          1,
+          71
+        ]
+      ]
+    }
+  },
+  "domain_disjoint_split": {
+    "test_domains": 95,
+    "train": 848,
+    "test": 95,
+    "xgboost": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          36,
+          0
+        ],
+        [
+          0,
+          59
+        ]
+      ]
+    },
+    "random_forest": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          36,
+          0
+        ],
+        [
+          0,
+          59
+        ]
+      ]
+    },
+    "ensemble": {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "confusion_matrix": [
+        [
+          36,
+          0
+        ],
+        [
+          0,
+          59
+        ]
+      ]
+    }
+  },
+  "ablation_no_https": {
+    "features": 34,
+    "xgboost": {
+      "accuracy": 0.9894,
+      "precision": 1.0,
+      "recall": 0.9722,
+      "f1": 0.9859,
+      "roc_auc": 0.9988,
+      "confusion_matrix": [
+        [
+          117,
+          0
+        ],
+        [
+          2,
+          70
+        ]
+      ]
+    },
+    "random_forest": {
+      "accuracy": 0.9894,
+      "precision": 1.0,
+      "recall": 0.9722,
+      "f1": 0.9859,
+      "roc_auc": 0.9998,
+      "confusion_matrix": [
+        [
+          117,
+          0
+        ],
+        [
+          2,
+          70
+        ]
+      ]
+    },
+    "ensemble": {
+      "accuracy": 0.9894,
+      "precision": 1.0,
+      "recall": 0.9722,
+      "f1": 0.9859,
+      "roc_auc": 0.9994,
+      "confusion_matrix": [
+        [
+          117,
+          0
+        ],
+        [
+          2,
+          70
+        ]
+      ]
+    }
+  },
+  "https_only_subset": {
+    "rows": 591,
+    "test": 148,
+    "xgboost": {
+      "accuracy": 0.9932,
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6667,
+      "roc_auc": 0.9897,
+      "confusion_matrix": [
+        [
+          146,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "malicious_probabilities": [
+      0.8447,
+      0.0581
+    ],
+    "max_benign_probability": 0.1149
+  },
+  "cv_full_data": {
+    "mean": 0.9958,
+    "std": 0.004,
+    "folds": [
+      0.9947,
+      0.9947,
+      1.0,
+      0.9894,
+      1.0
+    ]
+  },
+  "latency_ms_offline_pipeline": {
+    "n": 60,
+    "mean": 86.75,
+    "median": 84.58,
+    "p95": 102.03,
+    "min": 66.22,
+    "max": 267.33,
+    "note": "features + 16 rules + ensemble inference + hybrid scoring; excludes QR decode and network threat-intel"
+  }
+}

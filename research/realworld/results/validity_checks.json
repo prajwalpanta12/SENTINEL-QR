@@ -1,0 +1,81 @@
+{
+ "normalized_duplicates": {
+  "train": {
+   "rows": 60000,
+   "unique_normalized": 59775,
+   "within_split_duplicates": 225,
+   "normalized_urls_with_both_labels": 0
+  },
+  "val": {
+   "rows": 15739,
+   "unique_normalized": 15689,
+   "within_split_duplicates": 50,
+   "normalized_urls_with_both_labels": 0
+  },
+  "test": {
+   "rows": 18923,
+   "unique_normalized": 18856,
+   "within_split_duplicates": 67,
+   "normalized_urls_with_both_labels": 0
+  },
+  "train-val_overlap": 0,
+  "train-test_overlap": 0,
+  "val-test_overlap": 0
+ },
+ "temporal": {
+  "train": {
+   "phish_min": "2019-01-07",
+   "phish_max": "2023-12-28",
+   "benign_dates": [
+    "2017",
+    "2023-01"
+   ]
+  },
+  "val": {
+   "phish_min": "2024-01-04",
+   "phish_max": "2024-12-27",
+   "benign_dates": [
+    "2017",
+    "2024-01"
+   ]
+  },
+  "test": {
+   "phish_min": "2025-01-06",
+   "phish_max": "2026-09-30",
+   "benign_dates": [
+    "2017",
+    "2026-09"
+   ]
+  },
+  "train_or_val_phish_on_or_after_first_test_date": 0
+ },
+ "balance": {
+  "train": {
+   "phish": 30000,
+   "benign": 30000,
+   "by_source": {
+    "jpcert": 30000,
+    "crux": 15000,
+    "ebbu2017": 15000
+   }
+  },
+  "val": {
+   "phish": 8000,
+   "benign": 7739,
+   "by_source": {
+    "jpcert": 8000,
+    "crux": 4000,
+    "ebbu2017": 3739
+   }
+  },
+  "test": {
+   "phish": 10000,
+   "benign": 8923,
+   "by_source": {
+    "jpcert": 10000,
+    "crux": 5000,
+    "ebbu2017": 3923
+   }
+  }
+ }
+}

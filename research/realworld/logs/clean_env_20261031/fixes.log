@@ -1,0 +1,19 @@
+PASS UPI 10-digit mobile handle not HIGH_ENTROPY_VPA
+PASS UPI 91-prefixed mobile handle not HIGH_ENTROPY_VPA
+PASS UPI random alphanumeric handle still HIGH_ENTROPY_VPA
+PASS PDF report falls back to rule key 'id'
+PASS PDF generation still succeeds
+PASS SSL result distinguishes valid/cert_invalid/unreachable
+PASS App label shows "Cert invalid" for verification failure
+PASS Benchmark view carries synthetic-data warning
+PASS Dashboard telemetry carries synthetic-data caption
+PASS app.py parses
+PASS All 9 demo QR images still decode
+PASS Blank image returns no payload without raising
+PASS pyzbar restricted to QR symbols
+PASS Decoder failures are logged, not silently ignored
+PASS Sidebar shows URLhaus as inactive without an Auth-Key
+PASS Upload and webcam image errors are caught
+PASS Safe Browsing failure does not expose the API key
+PASS Safe Browsing failure is reported as unavailable, not clean
+18 passed, 0 failed

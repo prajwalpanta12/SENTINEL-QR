@@ -326,8 +326,10 @@ with st.sidebar:
     st.divider()
     st.markdown("<div class='brand-sub' style='margin-bottom:8px;'>Engine Status</div>",
                 unsafe_allow_html=True)
+    _uh_on = bool(st.session_state.get("urlhaus_auth_key") or os.environ.get("URLHAUS_AUTH_KEY"))
     for _line in ["🟢 Ensemble (XGB + RF + LR)", "🟢 16-Rule Heuristics",
-                  "🟢 URLhaus Feed", "🟢 UPI Fraud Engine",
+                  ("🟢 URLhaus Feed" if _uh_on else "⚪ URLhaus Feed (no Auth-Key; not queried)"),
+                  "🟢 UPI Fraud Engine",
                   "🟢 Wi-Fi Security Engine", "🟢 OpenCV Dual Decoder"]:
         st.markdown(f"<div style='font-size:0.82rem;color:{MUTED};padding:2px 0;'>{_line}</div>",
                     unsafe_allow_html=True)
@@ -616,7 +618,9 @@ def render_url_results(res):
          f"{rules_res['rule_count']} rules triggered"),
         (intel_card["tone"], "🌐", "Threat Intel", intel_card["label"], intel_card["detail"]),
         ("g" if ssl_ok else "y", "🔒", "SSL Security",
-         "Valid" if ssl_ok else "No TLS", str(ssl_info.get("issuer", "N/A"))[:18]),
+         {"valid": "Valid", "cert_invalid": "Cert invalid"}.get(
+             ssl_info.get("status", "valid" if ssl_ok else "unreachable"), "No TLS / unreachable"),
+         str(ssl_info.get("issuer", "N/A"))[:18]),
     ])
 
     t1, t2, t3, t4 = st.tabs(["📊 Overview", "🧠 AI Explanation", "🌐 Network Info", "🧾 Raw Features"])
@@ -752,12 +756,17 @@ if active_nav == "📊 Operations Dashboard":
     st.divider()
     meta = get_model_metadata().get("ensemble_metrics", {})
     st.markdown("##### 🤖 ML Engine Telemetry")
+    st.caption("⚠️ Synthetic-benchmark figures (bundled template-generated data, random split); "
+               "not representative of real-world phishing. Real-world test ROC-AUC of the shipped model: 0.437.")
     mc = st.columns(5)
     for col, (lab, key) in zip(mc, [("Accuracy", "accuracy"), ("Precision", "precision"),
                                     ("Recall", "recall"), ("F1 Score", "f1"), ("ROC-AUC", "roc_auc")]):
         with col:
-            v = meta.get(key, 0)
-            st.metric(lab, f"{v*100:.2f}%" if key == "accuracy" else f"{v:.4f}")
+            v = meta.get(key)
+            if not isinstance(v, (int, float)):
+                st.metric(lab, "N/A")  # metadata missing: never show 0 as if it were measured
+            else:
+                st.metric(lab, f"{v*100:.2f}%" if key == "accuracy" else f"{v:.4f}")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -783,8 +792,13 @@ elif active_nav == "🔍 Scan & Analyze":
         up = st.file_uploader("QR image", type=["png", "jpg", "jpeg", "webp"],
                               label_visibility="collapsed")
         if up:
-            image_in = Image.open(up)
-            source = f"File: {up.name}"
+            try:
+                image_in = Image.open(up)
+                image_in.load()
+                source = f"File: {up.name}"
+            except Exception:
+                image_in = None
+                st.error("The uploaded file could not be read as an image.")
 
     elif mode == "📷 Webcam":
         st.markdown("""<div class="drop-hint"><div class="big">📷</div>
@@ -793,8 +807,13 @@ elif active_nav == "🔍 Scan & Analyze":
                     unsafe_allow_html=True)
         cam = st.camera_input("Capture QR frame", label_visibility="collapsed")
         if cam:
-            image_in = Image.open(cam)
-            source = "Webcam Capture"
+            try:
+                image_in = Image.open(cam)
+                image_in.load()
+                source = "Webcam Capture"
+            except Exception:
+                image_in = None
+                st.error("The webcam frame could not be read as an image.")
 
     elif mode == "⚡ Demo Samples":
         presets = {
@@ -1078,18 +1097,19 @@ elif active_nav == "⚙️ Model Benchmark":
               "Weighted soft-voting ensemble vs. individual baselines.",
               "● ACADEMIC REVIEW · METRICS")
     meta = get_model_metadata()
+    st.warning("These metrics were measured on the bundled template-generated dataset (random split). "
+               "On an independent real-world benchmark (JPCERT/CC phishing 2025-2026 vs. CrUX/Ebbu2017 benign) "
+               "the shipped model reached ROC-AUC 0.437. See research/realworld/README.md.")
     ens = meta.get("ensemble_metrics", {})
     rows = []
     for label, md in [("🏆 Voting Ensemble (Primary)", ens),
                       ("XGBoost", meta.get("xgboost_metrics", {})),
                       ("Random Forest", meta.get("random_forest_metrics", {})),
                       ("Logistic Regression", meta.get("logistic_regression_metrics", {}))]:
-        rows.append({"Model": label,
-                     "Accuracy": f"{md.get('accuracy', 0)*100:.2f}%",
-                     "Precision": f"{md.get('precision', 0):.4f}",
-                     "Recall": f"{md.get('recall', 0):.4f}",
-                     "F1": f"{md.get('f1', 0):.4f}",
-                     "ROC-AUC": f"{md.get('roc_auc', 0):.4f}"})
+        _f = lambda k, pct=False: ("N/A" if not isinstance(md.get(k), (int, float))
+                                   else (f"{md[k]*100:.2f}%" if pct else f"{md[k]:.4f}"))
+        rows.append({"Model": label, "Accuracy": _f("accuracy", True), "Precision": _f("precision"),
+                     "Recall": _f("recall"), "F1": _f("f1"), "ROC-AUC": _f("roc_auc")})
     st.markdown("<div class='glass'><h4>📊 Benchmark Comparison</h4>", unsafe_allow_html=True)
     st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
     st.markdown("</div>", unsafe_allow_html=True)

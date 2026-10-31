@@ -127,7 +127,10 @@ def analyze_upi_payload(raw_text: str) -> dict:
 
     # Check 5: Suspicious Pseudo-Random / DGA VPA Handle
     vpa_user = data["payee_user"]
-    if len(vpa_user) >= 10 and re.match(r"^[a-z0-9]+$", vpa_user) and sum(c.isdigit() for c in vpa_user) >= 5:
+    # Exempt plain Indian mobile-number handles (10 digits starting 6-9, optional 91 prefix),
+    # which are the default VPA format of several UPI apps and are not disposable by themselves.
+    is_mobile_handle = re.fullmatch(r"(91)?[6-9]\d{9}", vpa_user) is not None
+    if (not is_mobile_handle) and len(vpa_user) >= 10 and re.match(r"^[a-z0-9]+$", vpa_user) and sum(c.isdigit() for c in vpa_user) >= 5:
         red_flags.append({
             "rule": "HIGH_ENTROPY_VPA",
             "severity": "MEDIUM",

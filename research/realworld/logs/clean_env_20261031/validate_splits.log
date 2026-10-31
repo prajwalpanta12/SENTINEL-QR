@@ -1,0 +1,18 @@
+[PASS          ] Required files exist
+[PASS          ] split_hashes.json agrees with manifest.json
+[PASS          ] Rebuilt split files match released split hashes
+[PASS          ] Sample counts: hash records = manifest = split_hashes.json - train=60000, val=15739, test=18923
+[PASS          ] Class distribution matches experiment_config.json - train: 30000 phishing / 30000 benign, val: 8000 phishing / 7739 benign, test: 10000 phishing / 8923 benign
+[PASS          ] Per-URL SHA-256 records recompute from rebuilt splits
+[PASS          ] No exact URL shared across splits (from hash records) - {'train-val': 0, 'train-test': 0, 'val-test': 0}
+[PASS          ] No exact duplicate URL within a split - {'train': 0, 'val': 0, 'test': 0}
+[PASS          ] No registered domain shared across splits (rebuilt splits) - {'train-val': 0, 'train-test': 0, 'val-test': 0}
+[PASS          ] Temporal order: no train/val phishing on or after first test date - count=0
+[PASS          ] Seeds, grids, bootstrap size, and selections documented - seeds=[42, 7, 13, 101, 2026], B=1000
+[PASS          ] Selected hyperparameters match results/r1_results.json
+[PASS          ] Shipped model files match the evaluated versions
+[PASS          ] Evaluated code modules (features, rules, explainability, model) unchanged
+[PASS          ] Manuscript numeric claims match result files (134 claims)
+[PASS          ] Every audited claim has a supporting artifact
+
+Summary: {'PASS': 16}

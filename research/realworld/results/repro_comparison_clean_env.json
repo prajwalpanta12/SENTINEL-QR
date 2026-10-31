@@ -1,0 +1,17 @@
+{
+ "note": "Clean virtual environment built from environment.txt pins (Python 3.13.18), isolated tldextract cache, no access to publicsuffix.org; splits rebuilt from the 2026-10-31 fresh download; all scripts re-run.",
+ "real_world_values_compared": 1155,
+ "differences": 0,
+ "synthetic_values_compared": 277,
+ "synthetic_differences": 0,
+ "score_arrays_max_abs_diff": {
+  "shipped": 1.11e-16,
+  "r4": 3.33e-16,
+  "others": 0.0
+ },
+ "tests": {
+  "test_system.py": "52/52",
+  "test_fixes.py": "18/18 (two later checks added afterwards)",
+  "validate_reproducibility.py": "16 PASS"
+ }
+}
